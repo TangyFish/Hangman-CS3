@@ -37,14 +37,23 @@ public class RingBuffer {
     // creates an empty ring buffer with the specified capacity
     public RingBuffer(int capacity) {
         // YOUR CODE HERE
+
     	Buffer = new double[capacity];
     	cap = capacity;
     	elems = 0;
     	last = 0;
     	first =0;
-    	for(int i = 0; i < Buffer.length; i++) {
-    		Buffer[i] = Double.MAX_VALUE;
-    	}
+    	
+    }
+    
+    public RingBuffer(double[] init) {
+        // YOUR CODE HERE
+    	Buffer = init;
+    	cap = init.length;
+    	elems = init.length;
+    	last = 0;
+    	first =0;
+    	
     }
 
     // return the capacity of this ring buffer
@@ -114,19 +123,25 @@ public class RingBuffer {
     
     public String toString() {
     	
+    	
     	double[] out = new double[elems];
     	int indexBuffer = first;
     	int i = 0;
+    	if (isEmpty()) {
+    		return Arrays.toString(out);
+    	}
     	if(first == last) {
-    		first = 0;
+    		out[0] = Buffer[first]; 
+    		indexBuffer = wrap(indexBuffer);
+    		i++;
     	}
     	while(indexBuffer != last) {
-    		
     		out[i] = Buffer[indexBuffer];
     		indexBuffer = wrap(indexBuffer);
     		i++;
     	}
     	return Arrays.toString(out);
+    	
     }
     
 
@@ -138,7 +153,7 @@ public class RingBuffer {
     	for(double i = 0; i < 12; i++) {
     		x.enqueue((i /2));
     	}
-    	System.out.println(x);
+    	System.out.println(x.toString());
     }
     
 
