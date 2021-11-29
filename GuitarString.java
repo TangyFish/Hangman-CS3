@@ -24,7 +24,7 @@ import java.io.PrintWriter;
 
 public class GuitarString {
     // YOUR INSTANCE VARIABLES HERE
-	private static RingBuffer BigArray;
+	private  RingBuffer BigArray;
 	
 
     // creates a guitar string of the specified frequency,
@@ -61,7 +61,7 @@ public class GuitarString {
     // advances the Karplus-Strong simulation one time step
     public void tic() {
     	double tim = BigArray.dequeue();
-    	BigArray.enqueue(.994 * ((tim +BigArray.peek()/2)));
+    	BigArray.enqueue( ((tim+BigArray.peek())/2)*0.996);
     	
         // YOUR CODE HERE
     }
@@ -72,17 +72,20 @@ public class GuitarString {
         // YOUR CODE HERE
     }
     
-    
 
 
     // tests and calls every constructor and instance method in this class
     public static void main(String[] args) {
         // YOUR CODE HERE
-    	double[] tim  = new double[] {.3,.2,.429};
-    	GuitarString tester = new GuitarString(tim);
-    	tester.tic();
-    	System.out.println(BigArray);
+    	double[] tim  = new double[] {.3,.2,.429,.932};
     
+    	GuitarString stringA = new GuitarString(tim);
+    	stringA.pluck();
+    	System.out.println(stringA.BigArray);
+    	System.out.println(stringA.BigArray.peek());
+    	System.out.println(stringA.BigArray);
+    	stringA.tic();
+    	System.out.println(stringA.BigArray);
     	
     	
     }

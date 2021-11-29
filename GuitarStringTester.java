@@ -6,16 +6,22 @@
  *
  ***************************************************************************/
 package Guitar_Hero;
+//I'm Thanh, partners with Andre
+
 
 import java.util.*;
 
-public class GuitarStringTester {
+public class GuitarStringTester implements Runnable {
 	private  GuitarString[] notes;
 	private  String Keyboard ; 
+	private String chord;
+	private int index;
 	
 	public GuitarStringTester() {
 		
 		Keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+		chord = "";
+		index = 0;
 		notes = new GuitarString[37];
         for (int i=0;i<notes.length;i++) {
         	notes[i] = new GuitarString(440*Math.pow(1.05956,i-24));
@@ -25,39 +31,33 @@ public class GuitarStringTester {
     public static void main(String[] args) 
     {
         GuitarStringTester  a = new GuitarStringTester();
-        a.run();
+        a.runMain();
     }
     
-    public void run() {
+    public void runMain() {
     	
         notes = new GuitarString[37];
         for (int i=0;i<notes.length;i++) {
         	notes[i] = new GuitarString(440*Math.pow(1.05956,i-24));
-        }
-        
-
-        final double TEXT_POS_X = .2;
-        final double TEXT_POS_Y = .5;
-                
+        } 
         Scanner kb = new Scanner( System.in );
- 
         // the user types this character
-        char key = kb.nextLine().charAt(0);
+        char key = kb.next().charAt(0);
         playNotes(key);
         
     }
-	
-
 		private  void plucker(int i) {
 			notes[i].pluck();
         	 for (int c=0;c<44100;c++) {
-             	double sample = notes[i].sample() ;
+             	double sample = notes[i].sample();
              	StdAudio.play(sample);
              	notes[i].tic();
              }
 		}
 		
-		public  void playNotes(char key) {
+		public void playNotes(char key) {
 			plucker(Keyboard.indexOf(key));
+			
 		}
+		
 }

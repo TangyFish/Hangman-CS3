@@ -22,21 +22,15 @@ import java.util.NoSuchElementException;
  *
  ******************************************************************************/
 
+// I'm Thanh, partners with Andre
 public class RingBuffer {
 	private double[] Buffer;
 	private int cap;
 	private int first;
 	private int last;
 	private int elems;
-    // YOUR INSTANCE VARIABLES HERE
-    // You are creating a circular queue.
-    // Look up how to create a cirucular queue using an array.
-
-    //must use and array   []
-
-    // creates an empty ring buffer with the specified capacity
+	
     public RingBuffer(int capacity) {
-        // YOUR CODE HERE
 
     	Buffer = new double[capacity];
     	cap = capacity;
@@ -47,7 +41,6 @@ public class RingBuffer {
     }
     
     public RingBuffer(double[] init) {
-        // YOUR CODE HERE
     	Buffer = init;
     	cap = init.length;
     	elems = init.length;
