@@ -10,6 +10,8 @@ public class KeyTrapper extends Canvas implements KeyListener, Runnable
 {
 	private String key;
 	private GuitarStringTester Guitar;
+	private Stack<Character> stack;
+	
 	
 		//this is the constructor
 	@Override
@@ -23,7 +25,6 @@ public class KeyTrapper extends Canvas implements KeyListener, Runnable
 	public KeyTrapper( )
 	{	
 		Guitar  = new GuitarStringTester();
-		key = "NO VALUE YET";
 		addKeyListener( this );
 		setFocusable( true );
 	}
@@ -48,7 +49,7 @@ public class KeyTrapper extends Canvas implements KeyListener, Runnable
 	{
 		
 		
-		key = e.getKeyText(ABORT) + "";
+		key = e.getKeyChar()+"";
 		System.out.println(key);
 		Thread t = new Thread(this);
 		t.start();
@@ -58,6 +59,8 @@ public class KeyTrapper extends Canvas implements KeyListener, Runnable
 	public void keyReleased(KeyEvent e)
 	{
 		System.out.println("released");	
+		
+		
 	}
 
 

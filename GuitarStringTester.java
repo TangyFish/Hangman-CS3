@@ -11,7 +11,7 @@ package Guitar_Hero;
 
 import java.util.*;
 
-public class GuitarStringTester implements Runnable {
+public class GuitarStringTester   {
 	private  GuitarString[] notes;
 	private  String Keyboard ; 
 	private String chord;
@@ -57,7 +57,6 @@ public class GuitarStringTester implements Runnable {
 		
 		public void playNotes(char key) {
 			plucker(Keyboard.indexOf(key));
-			
 		}
 		
 }
