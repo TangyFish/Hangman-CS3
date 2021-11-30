@@ -42,11 +42,11 @@ public class GuitarStringTester   {
         } 
         Scanner kb = new Scanner( System.in );
         // the user types this character
-        char key = kb.next().charAt(0);
+        String key = kb.next();
         playNotes(key);
         
     }
-		private  void plucker(int i) {
+		private void plucker(int i) {
 			notes[i].pluck();
         	 for (int c=0;c<44100;c++) {
              	double sample = notes[i].sample();
@@ -57,6 +57,23 @@ public class GuitarStringTester   {
 		
 		public void playNotes(char key) {
 			plucker(Keyboard.indexOf(key));
+		}
+		
+		public void playNotes(String key) {
+			
+			for (int i=0;i<key.length();i++) {
+				int note = Keyboard.indexOf(key.charAt(i));
+				notes[note].pluck();
+			}
+			for (int c=0;c<44100;c++) {
+				double sample = 0;
+				for (int i=0;i<key.length();i++) {
+					int note = Keyboard.indexOf(key.charAt(i));
+					sample +=notes[note].sample();
+					notes[note].tic();
+				}
+				StdAudio.play(sample);
+	        }
 		}
 		
 }
