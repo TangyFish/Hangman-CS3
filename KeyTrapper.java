@@ -6,24 +6,18 @@ import java.awt.Canvas;
 import java.util.*;
 import java.awt.event.*;
 
-public class KeyTrapper extends Canvas implements KeyListener, Runnable
+public class KeyTrapper extends Canvas implements KeyListener
 {
 	private String key;
 	private GuitarStringTester Guitar;
-	private Stack<Character> stack;
 	
 	
 		//this is the constructor
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		Guitar.playNotes(key.charAt(0));
-		
-	}
 
 	
 	public KeyTrapper( )
 	{	
+		key = "";
 		Guitar  = new GuitarStringTester();
 		addKeyListener( this );
 		setFocusable( true );
@@ -42,26 +36,22 @@ public class KeyTrapper extends Canvas implements KeyListener, Runnable
 	public void keyTyped(KeyEvent e)
 	{
 		
-		System.out.println("pressed");			
 	}
 		
 	public void keyPressed(KeyEvent e)
 	{
-		
-		
-		key = e.getKeyChar()+"";
-		System.out.println(key);
-		Thread t = new Thread(this);
-		t.start();
+		key += e.getKeyChar()+"";		
 		
 	}
 				
 	public void keyReleased(KeyEvent e)
 	{
-		System.out.println("released");	
 		
-		
+		Guitar.playNotes(key);
+		key ="";
+		repaint();
 	}
+
 
 
 	
